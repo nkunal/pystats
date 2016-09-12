@@ -1,0 +1,2 @@
+# pystats
+Statistics in python
