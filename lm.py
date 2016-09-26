@@ -2,10 +2,6 @@ import numpy as np
 import scipy
 import pandas as pd
 
-# lm=linear_model()
-# lm.fit(cx, "Catheter_Length", ["Height",  "Weight"])
-# lm.summary()
-
 
 
 class linear_model:
@@ -54,11 +50,9 @@ class linear_model:
         X = df[pred_names]
         X.insert(0, 'betas', 1)
         prod1 = np.linalg.inv(X.T.dot(X))
-        print "prod1 =%s" %prod1
         prod2 = X.T.dot(y)
         self.coefficients = prod1.dot(prod2)
         y_hat = X.dot(self.coefficients)
-        print " coefficients=%s" % self.coefficients
         y_mean = np.mean(y)
         self.ssto = sum(y.apply(lambda values: (y_mean - values) ** 2))
         self.ssr = sum(y_hat.apply(lambda values: (y_mean - values) **2))
@@ -86,7 +80,8 @@ class linear_model:
         print "\tSSE:  %0.3f" %self.sse
         print "\tSSTO: %0.3f" %self.ssto
 
-cx=pd.DataFrame(pd.read_csv("~/data/cathetar.txt", delim_whitespace=True))
-lm=linear_model()
-lm.fit(cx, "Catheter_Length", ["Height",  "Weight"])
-lm.summary()
+if __name__ == "__main__":
+    cx=pd.DataFrame(pd.read_csv("datasets/cathetar.txt", delim_whitespace=True))
+    lm=linear_model()
+    lm.fit(cx, "Catheter_Length", ["Height",  "Weight"])
+    lm.summary()
