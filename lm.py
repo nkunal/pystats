@@ -70,10 +70,10 @@ class linear_model:
     def summary(self):
         print "\n**** Linear Regression Model ****"
         print "Coefficients: "
-        print "\t\t{0:10} {1:10} {2:10}".format("Estimate", "Std.Error", "t-value")
-        print "{0:10} {1:>10.4f} {2:>10.4f} {3:>10.4f}".format("(Intercept)", self.coefficients[0], self.coeff_std_err[0], self.t_values[0])
+        print "\t\t{0:20} {1:10} {2:10}".format("Estimate", "Std.Error", "t-value")
+        print "{0:20} {1:>10.4f} {2:>10.4f} {3:>10.4f}".format("(Intercept)", self.coefficients[0], self.coeff_std_err[0], self.t_values[0])
         for i, pred in enumerate(self.pred_names):
-            print "{0:10} {1:>10.4f} {2:>10.4f} {3:>10.4f}".format(pred, self.coefficients[1+i], self.coeff_std_err[i+1], self.t_values[i+1])
+            print "{0:20} {1:>10.4f} {2:>10.4f} {3:>10.4f}".format(pred, self.coefficients[1+i], self.coeff_std_err[i+1], self.t_values[i+1])
         print "\n"
         print "** ANOVA Table **"
         print "\tSSR:  %0.3f" %self.ssr
@@ -85,3 +85,10 @@ if __name__ == "__main__":
     lm=linear_model()
     lm.fit(cx, "Catheter_Length", ["Height",  "Weight"])
     lm.summary()
+
+    cx=pd.DataFrame(pd.read_csv("datasets/winequality-red.csv", sep=';'))
+    mod1=linear_model()
+    mod1.fit(cx, "quality", ["fixed acidity", "volatile acidity", "citric acid",
+                             "residual sugar", "chlorides", "free sulfur dioxide",
+                             "total sulfur dioxide", "density", "pH", "sulphates", "alcohol"])
+    mod1.summary()
