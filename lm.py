@@ -4,7 +4,7 @@ import pandas as pd
 
 
 
-class linear_model:
+class LinearModel:
     """
     Class for linear regression model
     """
@@ -82,12 +82,12 @@ class linear_model:
 
 if __name__ == "__main__":
     cx=pd.DataFrame(pd.read_csv("datasets/cathetar.txt", delim_whitespace=True))
-    lm=linear_model()
+    lm=LinearModel()
     lm.fit(cx, "Catheter_Length", ["Height",  "Weight"])
     lm.summary()
 
     cx=pd.DataFrame(pd.read_csv("datasets/winequality-red.csv", sep=';'))
-    mod1=linear_model()
+    mod1=LinearModel()
     mod1.fit(cx, "quality", ["fixed acidity", "volatile acidity", "citric acid",
                              "residual sugar", "chlorides", "free sulfur dioxide",
                              "total sulfur dioxide", "density", "pH", "sulphates", "alcohol"])

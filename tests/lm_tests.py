@@ -4,11 +4,11 @@ import pandas as pd
 import lm
 import unittest
 
-class LinearRegressionTest(unittest.TestCase):
+class LinearModelTest(unittest.TestCase):
 
     def lm_cathetar_test(self):
         cx=pd.DataFrame(pd.read_csv("datasets/cathetar.txt", delim_whitespace=True))
-        mod1=lm.linear_model()
+        mod1=lm.LinearModel()
         mod1.fit(cx, "Catheter_Length", ["Height",  "Weight"])
         mod1.summary()
         assert np.allclose(mod1.coefficients, [ 20.37576446, 0.21074728, 0.1910949 ])
@@ -19,7 +19,7 @@ class LinearRegressionTest(unittest.TestCase):
 
     def lm_wines_test(self):
         cx=pd.DataFrame(pd.read_csv("datasets/winequality-red.csv", sep=';'))
-        mod1=lm.linear_model()
+        mod1=lm.LinearModel()
         mod1.fit(cx, "quality", ["fixed acidity", "volatile acidity", "citric acid",
                              "residual sugar", "chlorides", "free sulfur dioxide",
                                  "total sulfur dioxide", "density", "pH", "sulphates", "alcohol"])
