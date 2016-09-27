@@ -49,7 +49,7 @@ class RidgeModel:
         Fits a multiple linear regression model using
         the foll formula:
 
-        (XT*X + Lambda*IdentityMatrix)Inv * XT * response_name
+        (X^t * X + Lambda * IdentityMatrix) ^ -1 * X^t * response_name
         where:
         XT => Transpose of X matrix
         Inv => Inverse
